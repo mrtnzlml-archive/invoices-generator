@@ -1,0 +1,47 @@
+{block content}
+    <a n:href="newInvoice">Vytvožit novou fakturu</a>
+
+    <table class="preview">
+        <th>Číslo faktury</th>
+        <th>Datum vystavení</th>
+        <th>Datum splatnosti</th>
+        <th>Položky</th>
+        <th>Celková cena</th>
+        <th>Odběratel</th>
+        <th>PDF</th>
+        <tr n:foreach="$invoices as $invoice" valign="top">
+            <td>{$invoice->getInvoiceNumber()}</td>
+            <td>{$invoice->getDate('d. m. Y')}</td>
+            <td>{$invoice->getDueDate('d. m. Y')}</td>
+            <td>
+                <table style="margin:0">
+                    <tr n:foreach="$invoice->getInvoiceItems() as $invoiceItem">
+                        <td>{$invoiceItem->getDescription()} ({$invoiceItem->getPrice()})</td>
+                    </tr>
+                </table>
+            </td>
+            <td>{$invoice->getTotal()}</td>
+            <td style="font-size: 90%">
+                {var $odberatel = $invoice->getOdberatel()}
+                {$odberatel->getName()}<br>
+                {$odberatel->getStreet()}<br>
+                {$odberatel->getCity()}<br>
+                IČ: {$odberatel->getIc()}<br>
+                DIČ: {$odberatel->getDic()}
+            </td>
+            <td>
+                {var $invoicePDF = $pdfProvider->getPublicInvoicePath($invoice->getId())}
+                {if $invoicePDF}
+                    <a href="{$invoicePDF}" target="_blank">PDF</a>
+                {else}
+                    <a n:href="neplatce $invoice->getId()" target="_blank">Náhled faktury</a><br>
+                    <a n:href="generatePdf! $invoice->getId()">Vygenerovat PDF</a>
+                {/if}
+            </td>
+        </tr>
+    </table>
+    <div>
+        Celkem: {$totalPrice}<br>
+        Celkem včetně DPP: {$totalPriceDpp}
+    </div>
+{/block}

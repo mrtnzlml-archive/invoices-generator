@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="{$basePath}/main.css" rel="stylesheet">
+</head>
+<body>
+<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+{include content}
+<script src="{$basePath}/jquery.min.js"></script>
+<script src="{$basePath}/jquery.qrcode-0.12.0.min.js"></script>
+<script src="{$basePath}/nette.ajax.js"></script>
+<script src="{$basePath}/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+doctrine:
+	user: root
+	password: root
+	dbname: invoices
+	driver: pdo_mysql

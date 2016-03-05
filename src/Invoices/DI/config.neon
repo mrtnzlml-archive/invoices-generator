@@ -1,0 +1,3 @@
+services:
+    - App\Invoices\Components\INewInvoiceFormFactory
+    - App\Invoices\PdfProvider(%wwwDir%, ...)

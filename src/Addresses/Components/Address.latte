@@ -1,0 +1,12 @@
+<div class=address>
+	<div class=head>{$type}</div>
+	<div class=name>{$subject->getName()}</div>
+	<div>{$subject->getStreet()}</div>
+	<div>{$subject->getCity()}</div>
+</div>
+<div class=dic>
+	IČ {$subject->getIc()}
+</div>
+<div class=dic n:if="$subject->getDic()">
+	DIČ {$subject->getDic()}
+</div>

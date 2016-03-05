@@ -1,0 +1,54 @@
+{block content}
+	<div class=invoice>
+		<div class=header>
+			<div class=left></div>
+			<div class=right><h1 class=title>Faktura {$invoiceNumber}</h1></div>
+		</div>
+		<div class=info>
+			<div class=left>
+				{control dodavatel}
+				<div class=addinfo><em>Neplátce DPH</em></div>
+				<div class=bank>
+					<div>Bankovní účet<span class=account>{$account}</span></div>
+					<div>Variabilní symbol<span class=vs>{$vs}</span></div>
+					<div>Způsob platby<span class=type>Převodem</span></div>
+				</div>
+			</div>
+			<div class=right>
+				{control odberatel}
+				<div class=dates>
+					<div>
+						Datum vystavení <span class=date>{$date}</span>
+					</div>
+					<div>
+						Datum splatnosti <span class=dueDate>{$dueDate}</span>
+					</div>
+					<div>&nbsp;</div>
+				</div>
+			</div>
+		</div>
+		<table class=items>
+			<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				<th class="price">Částka</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr n:foreach="$products as $product">
+					<td class=td1>#{$iterator->counter}</td>
+					<td>{$product->getDescription()}</td>
+					<td class=tdc>{$product->getPrice()|number:2:',':' '}&nbsp;Kč</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class=summary>
+			<div id=qr data-iban="{$iban}" data-bic="{$bic}" data-total="{$total}" data-invoiceno="{$invoiceNumber}" data-vs="{$vs}"></div>
+			<div class=total>
+				<h1>{$total|number:2:',':' '}&nbsp;Kč</h1>
+			</div>
+		</div>
+		<div class=footer>Fyzická osoba je zapsaná v živnostenském rejstříku.</div>
+	</div>
+{/block}

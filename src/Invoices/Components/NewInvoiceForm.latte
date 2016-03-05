@@ -1,0 +1,48 @@
+{form newInvoice}
+    <table>
+        <tr>
+            <th><label n:name=dodavatel /></th>
+            <td><select n:name=dodavatel /></td>
+        </tr>
+        <tr>
+            <th><label n:name=odberatel /></th>
+            <td><select n:name=odberatel /></td>
+        </tr>
+        <tr>
+            <th><label n:name=date /></th>
+            <td>
+                <input n:name=date />
+                <input n:name=dueDate />
+            </td>
+        </tr>
+        <tr>
+            <th><label n:name=invoiceNumber /></th>
+            <td><input n:name=invoiceNumber /></td>
+        </tr>
+        <tr>
+            <th><label n:name=dpp /></th>
+            <td><input n:name=dpp /></td>
+        </tr>
+
+
+        <tr id="duplicatable">
+            <th>&nbsp;</th>
+            <td>
+                <input name="item[]" required/>
+                <input name="itemPrice[]" required type="number" step="0.01"/>
+            </td>
+        </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <td>
+                <a href="" class="ajax js-add-invoice-column">Přidat další řádku</a>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>&nbsp;</th>
+            <td><input n:name=send /></td>
+        </tr>
+    </table>
+{/form}

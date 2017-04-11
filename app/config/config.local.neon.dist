@@ -1,4 +1,5 @@
 doctrine:
+	host: mysql
 	user: root
 	password: root
 	dbname: invoices
